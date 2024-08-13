@@ -1,0 +1,34 @@
+# Config file for NiShiKi
+
+################################################################################
+# General settings
+################################################################################
+[GENERAL]
+
+# Size of the main window.
+window_width  = 400
+window_height = 80
+
+# Border width of the main window.
+window_border = 0
+
+# Window title.
+window_title = "HiRuGe: software launcher"
+
+# Text position.
+text_left_margin = 10
+text_top1_margin = 30
+text_top2_margin = 60
+
+# Font name (key for font search) and size.
+xft_fontname = "DejaVu Sans Mono"
+xft_fontsize = 14.0
+
+################################################################################
+# Alias settings
+################################################################################
+[ALIAS]
+
+windocker = "/home/tiskw/bin/windocker"
+
+# vim: expandtab shiftwidth=4 shiftwidth=4 fdm=marker

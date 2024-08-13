@@ -1,0 +1,103 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////
+/// C++ header file: window.hxx                                                                  ///
+///                                                                                              ///
+/// This file provides the "MainWindow" class that manages the X11 window.                       ///
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#ifndef WINDOW_HXX
+#define WINDOW_HXX
+
+// Include the headers of STL.
+#include <cstdint>
+
+// Include X11 headers.
+#include <X11/Xlib.h>
+#include <X11/Xft/Xft.h>
+#include <X11/Xutil.h>
+#include <X11/Xatom.h>
+
+// Include custom headers.
+#include "complete.hxx"
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// Type definitions
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+typedef struct {
+    XftColor white;
+    XftColor black;
+    XftColor red;
+    XftColor green;
+    XftColor blue;
+} XftColors;
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// Class definition
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+class MainWindow
+{
+    public:
+
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        // Constructors and descructors
+        ////////////////////////////////////////////////////////////////////////////////////////////
+
+         MainWindow(void);
+        ~MainWindow(void);
+
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        // Member functions
+        ////////////////////////////////////////////////////////////////////////////////////////////
+
+        void
+        start(int32_t argc, char *argv[], Complete& complete);
+        // [Abstract]
+        //   Start GUI loop.
+        //
+        // [Args]
+        //   argc     (int32_t)  : [IN] The number of command line arguments.
+        //   argv     (char*[])  : [IN] The values of command line arguments.
+        //   complete (Complete&): [IN] Complete instance.
+
+    private:
+
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        // Private member variables
+        ////////////////////////////////////////////////////////////////////////////////////////////
+
+        Display* display;
+        // Pointer to the X11 display.
+
+        Window window;
+        // Window instance.
+
+        XftFont* xft_font;
+        // Primary data structure of Xft.
+
+        Colormap cmap;
+        // Colormap of X11.
+
+        XftColors colors;
+        // Collection of primary colors.
+
+        XftDraw* draw;
+        // Xft data structure used for rendering a font.
+
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        // Private functions
+        ////////////////////////////////////////////////////////////////////////////////////////////
+
+        void
+        redraw_window(const std::string& input, Complete& complete);
+        // [Abstract]
+        //   Redraw the window.
+        //
+        // [Args]
+        //   input    (const std::string&): [IN] User input.
+        //   complete (Complete&)         : [IN] Complete instance.
+};
+
+#endif
+
+// vim: expandtab tabstop=4 shiftwidth=4 fdm=marker
